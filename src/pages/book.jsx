@@ -1,5 +1,5 @@
 
-const ProductPage = () => {
+const BookPage = () => {
     return (
         <div style={{ padding: "20px" }}>
             Product Page
@@ -7,5 +7,5 @@ const ProductPage = () => {
     )
 }
 
-export default ProductPage;
+export default BookPage;
 
