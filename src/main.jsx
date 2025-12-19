@@ -9,15 +9,22 @@ import LoginPage from './pages/login.jsx';
 import RegisterPage from './pages/register.jsx';
 import UserPage from './pages/user.jsx';
 import ProductPage from './pages/products.jsx';
+import TodoPage from './pages/todo.jsx';
+import ErrorPage from './pages/error.jsx';
 import './styles/global.css';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
-        path: "/user",
+        index: true,
+        element: <TodoPage />,
+      },
+      {
+        path: "/users",
         element: <UserPage />,
       },
       {
@@ -26,19 +33,14 @@ const router = createBrowserRouter([
       },
     ]
   },
-
   {
     path: "/login",
     element: <LoginPage />,
   },
-
   {
     path: "/register",
     element: <RegisterPage />,
   },
-
-
-
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

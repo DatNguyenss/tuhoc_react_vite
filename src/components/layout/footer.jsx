@@ -2,7 +2,9 @@ import './footer.css'
 
 const Footer = () => {
     return (
-        <div class="footer" > <p>React Vite - @hoidanit</p> </div>
+        <div className="footer">
+            <p>React Vite - @hoidanit</p>
+        </div>
     )
 }
 

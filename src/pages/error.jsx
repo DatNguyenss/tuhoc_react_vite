@@ -1,0 +1,21 @@
+import { useRouteError } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+export default function ErrorPage() {
+    const error = useRouteError();
+    console.error(error);
+
+    return (
+        <div id="error-page" style={{ padding: "20px", textAlign: "center" }}>
+            <h1>Oops!</h1>
+            <p>Sorry, an unexpected error has occurred.</p>
+            <p>
+                <i>{error.statusText || error.message}</i>
+            </p>
+            <div style={{ marginTop: "20px" }}>
+                <Link to="/">Back to Home Page</Link>
+            </div>
+        </div>
+    );
+}
+
