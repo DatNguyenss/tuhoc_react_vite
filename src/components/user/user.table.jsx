@@ -8,13 +8,9 @@ import { fetchAllUserAPI } from '../../services/api.service';
 //const App: React.FC = () => <Table<DataType> columns={columns} dataSource={data} />;
 
 
-const UserTable = () => {
+const UserTable = (props) => {
 
-    const [dataUser, setDataUser] = useState([]);
-
-    useEffect(() => {
-        loadUser()
-    }, []);
+    const { dataUser } = props;
 
     const columns = [
         {
@@ -63,11 +59,7 @@ const UserTable = () => {
         //         ),
         //     },
     ];
-    const loadUser = async () => {
-        const res = await fetchAllUserAPI()
-        //console.log(">>> end", res)
-        setDataUser(res.data)
-    }
+
     // loadUser();
     return (
         <Table columns={columns} dataSource={dataUser} rowKey={"_id"} />
