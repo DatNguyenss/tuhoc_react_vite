@@ -65,7 +65,7 @@ const UserTable = () => {
     ];
     const loadUser = async () => {
         const res = await fetchAllUserAPI()
-        console.log(">>> end", res)
+        //console.log(">>> end", res)
         setDataUser(res.data)
     }
     // loadUser();
