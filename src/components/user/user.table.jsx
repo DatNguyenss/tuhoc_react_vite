@@ -1,6 +1,8 @@
 import { Flex, Space, Table, Tag } from 'antd';
 import { useEffect, useState } from 'react';
 import { fetchAllUserAPI } from '../../services/api.service';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import UpdateUserModal from './update.user.modal';
 
 
 
@@ -16,7 +18,11 @@ const UserTable = (props) => {
         {
             title: 'ID',
             dataIndex: '_id',
-
+            render: (_, record) => {
+                return (
+                    <a href="#" > {record._id}</a>
+                )
+            }
         },
         {
             title: 'Full Name',
@@ -27,7 +33,17 @@ const UserTable = (props) => {
             title: 'Email',
             dataIndex: 'email',
 
-        }
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (_, record) => (
+                <Space size="middle">
+                    <EditOutlined style={{ cursor: "pointer", color: "orange" }} />
+                    <DeleteOutlined style={{ cursor: "pointer", color: "red" }} />
+                </Space>
+            ),
+        },
         //     {
         //         title: 'Tags',
         //         key: 'tags',
@@ -62,7 +78,11 @@ const UserTable = (props) => {
 
     // loadUser();
     return (
-        <Table columns={columns} dataSource={dataUser} rowKey={"_id"} />
+        <>
+            <UpdateUserModal />
+            <Table columns={columns} dataSource={dataUser} rowKey={"_id"} />
+        </>
+
     )
 }
 
