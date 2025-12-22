@@ -13,6 +13,8 @@ import UpdateUserModal from './update.user.modal';
 const UserTable = (props) => {
 
     const { dataUser } = props;
+    const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
+    const [dataUpdate, setDataUpdate] = useState(null);
 
     const columns = [
         {
@@ -39,48 +41,35 @@ const UserTable = (props) => {
             key: 'action',
             render: (_, record) => (
                 <Space size="middle">
-                    <EditOutlined style={{ cursor: "pointer", color: "orange" }} />
+                    <EditOutlined
+                        onClick={() => {
+                            setDataUpdate(record);
+                            setIsModalUpdateOpen(true);
+                        }}
+                        style={{ cursor: "pointer", color: "orange" }} />
                     <DeleteOutlined style={{ cursor: "pointer", color: "red" }} />
                 </Space>
             ),
         },
-        //     {
-        //         title: 'Tags',
-        //         key: 'tags',
-        //         dataIndex: 'tags',
-        //         render: (_, { tags }) => (
-        //             <Flex gap="small" align="center" wrap>
-        //                 {tags.map(tag => {
-        //                     let color = tag.length > 5 ? 'geekblue' : 'green';
-        //                     if (tag === 'loser') {
-        //                         color = 'volcano';
-        //                     }
-        //                     return (
-        //                         <Tag color={color} key={tag}>
-        //                             {tag.toUpperCase()}
-        //                         </Tag>
-        //                     );
-        //                 })}
-        //             </Flex>
-        //         ),
-        //     },
-        //     {
-        //         title: 'Action',
-        //         key: 'action',
-        //         render: (_, record) => (
-        //             <Space size="middle">
-        //                 <a>Invite {record.name}</a>
-        //                 <a>Delete</a>
-        //             </Space>
-        //         ),
-        //     },
+
     ];
 
     // loadUser();
     return (
         <>
-            <UpdateUserModal />
-            <Table columns={columns} dataSource={dataUser} rowKey={"_id"} />
+
+            <Table
+                columns={columns}
+                dataSource={dataUser}
+                rowKey={"_id"} />
+            <UpdateUserModal
+                isModalUpdateOpen={isModalUpdateOpen}
+                setIsModalUpdateOpen={setIsModalUpdateOpen}
+                dataUpdate={dataUpdate}
+                setDataUpdate={setDataUpdate}
+            />
+
+
         </>
 
     )
